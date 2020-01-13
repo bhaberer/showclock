@@ -1,0 +1,24 @@
+= form_for [@event, @day, @block] do |f|
+  - if @block.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@block.errors.count, "error")} prohibited this block from being saved:"
+      %ul
+        - @block.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :block_type
+    = f.text_field :block_type
+  .field
+    = f.label :order
+    = f.number_field :order
+  .field
+    = f.label :duration
+    = f.number_field :duration
+
+  = f.hidden_field :day_id, value: @day.id
+  .actions
+    = f.submit 'Save'

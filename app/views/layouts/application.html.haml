@@ -1,0 +1,25 @@
+!!!
+%html{ 'xml:lang' => 'en', lang: 'en', xmlns: 'http://www.w3.org/1999/xhtml' }
+  %head
+    %title
+      - if yield(:title).present?
+        #{yield(:title)} -
+      The Machine
+    %script{ src: 'https://www.google.com/jsapi' }
+    %meta{ name: :viewport, content: 'width=device-width',
+                            'initial-scale' => 1.0 }
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all',
+                          'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
+  %body
+    = render partial: 'layouts/nav'
+    .container{ id: [params[:controller], '_', params[:action]].join,
+                style: 'margin-top: 60px;' }
+      - if notice.present? || alert.present?
+        .alert.alert-warning
+          %button.close{ type: :button, 'data-dismiss' => :alert } &times;
+          = notice
+          = alert
+      = yield
+ 

@@ -1,0 +1,9 @@
+.day[@day]
+  = @day.name
+
+  - @day.blocks.each do |block|
+    %li= link_to "Block!", event_day_block_path(@event, @day, block)
+
+  = link_to "New Block", new_event_day_block_path(@event, @day)
+  = link_to 'Edit', edit_event_day_path(@event, @day)
+  = link_to 'Back', event_days_path(@event)

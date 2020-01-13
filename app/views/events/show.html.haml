@@ -1,0 +1,10 @@
+.event[@event]
+  %h2= @event.name
+
+  = link_to "Add day", new_event_day_path(@event)
+
+  %h4 Days
+
+  - @event.days.each do |day|
+    = link_to day.name, event_day_path(@event, day)
+    %br
