@@ -7,7 +7,7 @@ gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
 
 gem 'bootstrap', '~> 4.4.1'
 gem 'coffee-rails', '~> 4.2'
-gem 'devise', '~> 4.4.3'
+gem 'devise', '~> 4.7.1'
 gem 'haml', '~> 5.0'
 gem 'haml-rails', '~> 1.0'
 gem 'jbuilder', '~> 2.5'
