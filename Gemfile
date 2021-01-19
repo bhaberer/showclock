@@ -1,17 +1,17 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.0'
+ruby '2.7.2'
 
-gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
+gem 'rails', '~> 5.2.4.4'
 
-gem 'bootstrap', '~> 4.4.1'
+gem 'bootstrap', '~> 4.5.3'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise', '~> 4.7.1'
 gem 'haml', '~> 5.0'
-gem 'haml-rails', '~> 1.0'
+gem 'haml-rails', '~> 2.0.1'
 gem 'jbuilder', '~> 2.5'
-gem 'jquery-rails', '~> 4.3.1'
+gem 'jquery-rails', '~> 4.4.0'
 gem 'passenger'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.12'
@@ -26,8 +26,6 @@ gem 'uglifier', '>= 1.3.0'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
