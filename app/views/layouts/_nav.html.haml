@@ -9,3 +9,16 @@
       %li.nav-item
         = link_to 'Events', events_path,
                             class: "nav-link #{controller_name == 'events' ? 'active' : ''}"
+      - if @event && @event.persisted?
+        %li.nav-item
+          = link_to @event.name, @event,
+                    class: "nav-link active"
+        %li.nav-item
+          = link_to 'Days', event_days_path(@event),
+                    class: "nav-link #{controller_name == 'days' ? 'active' : ''}"
+        - if @day && @day.persisted?
+          = link_to @day.name, event_day_path(@event, @day),
+                    class: "nav-link active"
+          %li.nav-item
+            = link_to 'Blocks', event_day_blocks_path(@event, @day),
+                      class: "nav-link #{controller_name == 'blocks' ? 'active' : ''}"

@@ -1,11 +1,10 @@
-%h1 Listing blocks
+%h1 Blocks for #{@event.name}, #{@day.name}
 
 %table
   %thead
     %tr
       %th Name
       %th Block type
-      %th Order
       %th Duration
       %th
       %th
@@ -16,7 +15,6 @@
       %tr
         %td= block.name
         %td= block.block_type
-        %td= block.order
         %td= block.duration
         %td= link_to 'Show', event_day_block_path(@event, @day, block)
         %td= link_to 'Edit', edit_event_day_block_path(@event, @day, block)

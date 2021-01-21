@@ -16,6 +16,7 @@ class DaysController < ApplicationController
 
   def create
     @day = Day.new(day_params)
+    @day.order = @event.days.length
 
     respond_to do |format|
       if @day.save

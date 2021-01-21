@@ -4,7 +4,7 @@ class BlocksController < ApplicationController
   before_action :set_block, only: [:show, :edit, :update, :destroy]
 
   def index
-    @blocks = Block.all
+    @blocks = Block.where(day: @day)
   end
 
   def show; end
@@ -17,10 +17,13 @@ class BlocksController < ApplicationController
 
   def create
     @block = Block.new(block_params)
+    @block.order = @day.blocks.length
 
     respond_to do |format|
       if @block.save
-        format.html { redirect_to event_day_block_path(@event, @day, @block), notice: 'Block was successfully created.' }
+        format.html {
+          redirect_to event_day_path(@event, @day),
+                      notice: "Block for #{@block.name} was successfully created" }
         format.json { render :show, status: :created, location: @block }
       else
         format.html { render :new }

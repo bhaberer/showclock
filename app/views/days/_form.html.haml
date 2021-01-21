@@ -6,12 +6,9 @@
         - @day.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  .form-group
     = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :order
-    = f.number_field :order
+    = f.text_field :name, class: 'form-control'
   = f.hidden_field :event_id, value: @event.id
   .actions
     = f.submit 'Save'

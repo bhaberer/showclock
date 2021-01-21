@@ -4,7 +4,7 @@
     %title
       - if yield(:title).present?
         #{yield(:title)} -
-      The Machine
+      Show Clock
     %script{ src: 'https://www.google.com/jsapi' }
     %meta{ name: :viewport, content: 'width=device-width',
                             'initial-scale' => 1.0 }
@@ -22,4 +22,3 @@
           = notice
           = alert
       = yield
- 

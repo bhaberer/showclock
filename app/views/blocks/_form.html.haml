@@ -6,18 +6,16 @@
         - @block.errors.full_messages.each do |message|
           %li= message
 
-  .field
+
+  .form-group
     = f.label :name
-    = f.text_field :name
-  .field
+    = f.text_field :name, class: 'form-control'
+  .form-group
     = f.label :block_type
-    = f.text_field :block_type
-  .field
-    = f.label :order
-    = f.number_field :order
-  .field
+    = f.select :block_type, Block.types_for_select, {}, { class: 'form-control' }
+  .form-group
     = f.label :duration
-    = f.number_field :duration
+    = f.number_field :duration, class: 'form-control'
 
   = f.hidden_field :day_id, value: @day.id
   .actions
