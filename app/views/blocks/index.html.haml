@@ -1,8 +1,13 @@
 %h1 Blocks for #{@event.name}, #{@day.name}
 
-%table
+= link_to 'New Block', new_event_day_block_path(@event, @day), class: 'btn btn-primary'
+
+
+%table.table
   %thead
     %tr
+      %th
+      %th
       %th Name
       %th Block type
       %th Duration
@@ -13,13 +18,12 @@
   %tbody
     - @blocks.each do |block|
       %tr
-        %td= block.name
-        %td= block.block_type
-        %td= block.duration
-        %td= link_to 'Show', event_day_block_path(@event, @day, block)
+        %td EARLIER
+        %td LATER
+        %td= link_to block.name, event_day_block_path(@event, @day, block)
+        %td= block_type_to_string(block.block_type) || block.block_type
+        %td #{block.duration} minutes
         %td= link_to 'Edit', edit_event_day_block_path(@event, @day, block)
-        %td= link_to 'Destroy', event_day_block_path(@event, @day, block), method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Remove', event_day_block_path(@event, @day, block), method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
-
-= link_to 'New Block', new_event_day_block_path(@event, @day)

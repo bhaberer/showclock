@@ -11,18 +11,12 @@
       %table.table
         %thead
           %tr
-            %th
-            %th
             %th Name
             %th
             %th
             %th
         - @day.blocks.each do |block|
           %tr{class: "block_#{block.block_type}"}
-            %td
-              EARLIER
-            %td
-              LATER
             %td
               = link_to block.name, event_day_block_path(@event, @day, block)
             %td
