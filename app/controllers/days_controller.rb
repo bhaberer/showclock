@@ -6,7 +6,9 @@ class DaysController < ApplicationController
     @days = Day.all
   end
 
-  def show; end
+  def show
+    @blocks = @day.blocks.order(:order)
+  end
 
   def new
     @day = Day.new
@@ -60,6 +62,6 @@ class DaysController < ApplicationController
   end
 
   def day_params
-    params.require(:day).permit(:name, :order, :event_id)
+    params.require(:day).permit(:name, :order, :event_id, :start_time)
   end
 end

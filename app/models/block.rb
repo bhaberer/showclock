@@ -61,4 +61,17 @@ class Block < ApplicationRecord
 
     return self.save && earlier_block.save
   end
+
+  def start_time
+    day.start_time + duration_of_previous_blocks.minutes
+  end
+
+  def end_time
+    start_time + duration.minutes
+  end
+
+  def duration_of_previous_blocks
+    self.day.blocks.where('"order" < ?', self.order).map(&:duration).sum
+  end
+
 end

@@ -2,26 +2,32 @@
   .row
     .col-md-12
       #{@day.name} - #{link_to 'Edit', edit_event_day_path(@event, @day)}
+  %br
+  .row
+    .col-md-12
+      Show starts: #{@day.start_time.strftime("%e %b %Y %H:%M")}
+  %br
   .row
     .col-md-12
       = link_to "Update Blocks", event_day_blocks_path(@event, @day),
                 class: 'btn btn-primary'
+  %br
   .row
     .col-md-12
       %table.table
         %thead
           %tr
             %th Name
-            %th
-            %th
-            %th
-        - @day.blocks.each do |block|
+            %th Duration
+            %th Start Time
+            %th End Time
+        - @blocks.each do |block|
           %tr{class: "block_#{block.block_type}"}
             %td
               = link_to block.name, event_day_block_path(@event, @day, block)
             %td
               = block.duration
             %td
-              START
+              = block.start_time.strftime("%I:%M %p")
             %td
-              END
+              = block.end_time.strftime("%I:%M %p")

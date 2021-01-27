@@ -92,6 +92,6 @@ class BlocksController < ApplicationController
   end
 
   def block_params
-    params.require(:block).permit(:name, :block_type, :order, :duration, :day_id, :start_time)
+    params.require(:block).permit(:name, :block_type, :order, :duration, :day_id)
   end
 end
