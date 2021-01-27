@@ -18,8 +18,17 @@
   %tbody
     - @blocks.each do |block|
       %tr
-        %td EARLIER
-        %td LATER
+        %td= block.order
+        %td
+          - if first_block(block)
+            UP
+          - else
+            = link_to 'UP', event_day_block_move_earlier_path(@event, @day, block), method: :put
+        %td
+          - if last_block(block)
+            DOWN
+          - else
+            = link_to 'DOWN', event_day_block_move_later_path(@event, @day, block), method: :put
         %td= link_to block.name, event_day_block_path(@event, @day, block)
         %td= block_type_to_string(block.block_type) || block.block_type
         %td #{block.duration} minutes

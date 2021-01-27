@@ -1,10 +1,11 @@
 class BlocksController < ApplicationController
   before_action :set_event
   before_action :set_day
-  before_action :set_block, only: [:show, :edit, :update, :destroy]
+  before_action :set_block, only: [:show, :edit, :update, :destroy,
+                                   :move_earlier, :move_later]
 
   def index
-    @blocks = Block.where(day: @day)
+    @blocks = Block.where(day: @day).order(:order)
   end
 
   def show; end
@@ -15,14 +16,38 @@ class BlocksController < ApplicationController
 
   def edit; end
 
+  def move_earlier
+    respond_to do |format|
+      if @block.move_earlier!
+        format.html { redirect_to event_day_blocks_path(@event, @day), notice: 'Block was successfully moved.' }
+        format.json { render :index, status: :updated, location: @block }
+      else
+        format.html { redirect_to event_day_blocks_path(@event, @day), notice: 'Block could not be moved.'  }
+        format.json { render json: @block.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def move_later
+    respond_to do |format|
+      if @block.move_later!
+        format.html { redirect_to event_day_blocks_path(@event, @day), notice: 'Block was successfully moved.' }
+        format.json { render :index, status: :updated, location: @block }
+      else
+        format.html { redirect_to event_day_blocks_path(@event, @day), notice: 'Block could not be moved.'  }
+        format.json { render json: @block.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def create
     @block = Block.new(block_params)
-    @block.order = @day.blocks.length
+    @block.order = @day.blocks.length + 1
 
     respond_to do |format|
       if @block.save
         format.html {
-          redirect_to event_day_path(@event, @day),
+          redirect_to event_day_blocks_path(@event, @day),
                       notice: "Block for #{@block.name} was successfully created" }
         format.json { render :show, status: :created, location: @block }
       else
@@ -55,7 +80,7 @@ class BlocksController < ApplicationController
   private
 
   def set_block
-    @block = Block.find(params[:id])
+    @block = Block.find(params[:id] || params[:block_id])
   end
 
   def set_day
@@ -67,6 +92,6 @@ class BlocksController < ApplicationController
   end
 
   def block_params
-    params.require(:block).permit(:name, :block_type, :order, :duration, :day_id)
+    params.require(:block).permit(:name, :block_type, :order, :duration, :day_id, :start_time)
   end
 end
