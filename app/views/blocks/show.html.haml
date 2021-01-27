@@ -1,18 +1,13 @@
-%p#notice= notice
+.row
+  .col-md-4.offset-md-4.default
+    %p#notice= notice
 
-%p
-  %b Name:
-  = @block.name
-%p
-  %b Block type:
-  = @block.block_type
-%p
-  %b Order:
-  = @block.order
-%p
-  %b Duration:
-  = @block.duration
-
-= link_to 'Edit', edit_event_day_block_path(@event, @day, @block)
-\|
-= link_to 'Back', event_day_blocks_path(@event, @day)
+    %p
+      %b Name:
+      = @block.name
+    %p
+      %b Block type:
+      = block_type_to_string(@block.block_type)
+    %p
+      %b Duration:
+      #{@block.duration} minutes

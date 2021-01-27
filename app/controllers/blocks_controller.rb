@@ -35,7 +35,7 @@ class BlocksController < ApplicationController
   def update
     respond_to do |format|
       if @block.update(block_params)
-        format.html { redirect_to event_day_block_path(@event, @day, @block), notice: 'Block was successfully updated.' }
+        format.html { redirect_to event_day_blocks_path(@event, @day), notice: 'Block was successfully updated.' }
         format.json { render :show, status: :ok, location: @block }
       else
         format.html { render :edit }

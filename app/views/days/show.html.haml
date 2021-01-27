@@ -4,7 +4,7 @@
       #{@day.name} - #{link_to 'Edit', edit_event_day_path(@event, @day)}
   .row
     .col-md-12
-      = link_to "New Block", new_event_day_block_path(@event, @day),
+      = link_to "Update Blocks", event_day_blocks_path(@event, @day),
                 class: 'btn btn-primary'
   .row
     .col-md-12
