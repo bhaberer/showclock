@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :events do
     resources :days do
+      get 'timer', to: 'days#timer'
       resources :blocks do
         scope :move do
           put 'earlier', to: 'blocks#move_earlier', as: 'move_earlier'

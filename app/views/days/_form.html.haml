@@ -12,6 +12,5 @@
   .form-group
     = f.label :start_time
     = f.datetime_field :start_time
-  = f.hidden_field :event_id, value: @event.id
   .actions
     = f.submit 'Save'

@@ -1,3 +1,35 @@
 // Place all the styles related to the days controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.timer {
+  background-color: #000000;
+  color: #FFFFFF;
+  margin: 0;
+  font-family: arial;
+  font-size: 16px;
+  overflow: hidden;
+  .timer_normal {
+    background-color: green;
+    color: white;
+  }
+  .timer_warning {
+    background-color: yellow;
+    color: black;
+  }
+  .timer_danger {
+    background-color: red;
+    color: white;
+  }
+  .display {
+    background-size: cover;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+    .clock {
+      font-size: 20em;
+      font-family: sans-serif;
+    }
+  }
+}

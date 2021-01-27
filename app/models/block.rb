@@ -74,4 +74,16 @@ class Block < ApplicationRecord
     self.day.blocks.where('"order" < ?', self.order).map(&:duration).sum
   end
 
+  def in_progress?
+    current_time = DateTime.now.utc
+    start_time < current_time && current_time < end_time
+  end
+
+  def time_remaining
+    return unless in_progress?
+    total_remaining_seconds = (end_time - DateTime.now.utc).floor
+    remaining_minutes = (total_remaining_seconds / 60).floor
+    remaining_seconds = total_remaining_seconds % 60
+    { minutes: remaining_minutes, seconds: remaining_seconds }
+  end
 end

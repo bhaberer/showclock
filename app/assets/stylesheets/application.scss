@@ -1,2 +1,7 @@
+// Import bootstrap base
 @import 'bootstrap';
+
+// Import model/controller specific styles
 @import 'blocks';
+@import 'days';
+@import 'events';

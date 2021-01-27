@@ -1,9 +1,19 @@
 class DaysController < ApplicationController
   before_action :set_event
-  before_action :set_day, only: [:show, :edit, :update, :destroy]
+  before_action :set_day, only: [:timer, :show, :edit, :update, :destroy]
 
   def index
     @days = Day.all
+  end
+
+  def timer
+    @current_block = @day.current_block
+    if @current_block
+      @minutes = @current_block.time_remaining[:minutes]
+      @seconds = @current_block.time_remaining[:seconds].to_s.rjust(2, "0")
+    end
+
+    render layout: 'timer'
   end
 
   def show
@@ -18,6 +28,7 @@ class DaysController < ApplicationController
 
   def create
     @day = Day.new(day_params)
+    @day.event = @event
     @day.order = @event.days.length
 
     respond_to do |format|
@@ -54,7 +65,7 @@ class DaysController < ApplicationController
   private
 
   def set_day
-    @day = Day.find(params[:id])
+    @day = Day.find(params[:id] || params[:day_id])
   end
 
   def set_event
@@ -62,6 +73,6 @@ class DaysController < ApplicationController
   end
 
   def day_params
-    params.require(:day).permit(:name, :order, :event_id, :start_time)
+    params.require(:day).permit(:name, :order, :start_time)
   end
 end

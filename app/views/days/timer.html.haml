@@ -1,0 +1,18 @@
+- if @current_block
+  .display.text-center{ class: timer_background(@current_block) }
+    %h1 Current Act: #{@current_block.name}
+    %br
+    %br
+    .clock
+      #{@minutes}:#{@seconds}
+    Current Act Start: #{@current_block.start_time.strftime("%I:%M %p")}
+    Current Act End: #{@current_block.end_time.strftime("%I:%M %p")}
+- elsif @day.post_show?
+  .display.text-center{ class: 'timer_danger' }
+    .clock
+      End
+
+:javascript
+  setTimeout(function(){
+    window.location.reload(1);
+  }, 1000);
