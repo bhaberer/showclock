@@ -1,20 +1,8 @@
-%h1 Listing days
 
-= link_to 'New Day', new_event_day_path(@event), class: 'btn btn-sm btn-primary'
+.default
+  .row
+    .col-md-12
+      = link_to 'New Day', new_event_day_path(@event), class: 'btn btn-sm btn-primary'
 
-
-%table.table
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
-
-  %tbody
-    - @days.each do |day|
-      %tr
-        %td= link_to day.name, event_day_path(@event, day)
-        %td= link_to 'Edit', edit_event_day_path(@event, day)
-        %td= link_to 'Destroy', event_day_path(@event, day), method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
+.default
+  = render partial: 'day', collection: @days

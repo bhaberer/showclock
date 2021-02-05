@@ -5,3 +5,22 @@
 @import 'blocks';
 @import 'days';
 @import 'events';
+
+
+$color-primary-0: #0E121C;      // Main Primary color */
+$color-primary-1: #30353E;
+$color-primary-2: #171B23;
+$color-primary-3: #070B14;
+$color-primary-4: #02060D;
+
+body {
+  padding-top: 25px;
+  background-color: $color-primary-0;
+  .default {
+    padding: 10px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    background-color: white;
+    border-radius: 2px;
+  }
+}

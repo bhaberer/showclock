@@ -1,3 +1,12 @@
 .row
   .col-md-4.offset-md-4.default
-    = render 'form'
+    .row
+      .col-md-12
+        = link_to 'Delete Event', @event, method: :delete,
+                  data: { confirm: 'Are you sure? This cannot be undone!' },
+                  class: 'btn btn-danger'
+        %br
+        %br
+    .row
+      .col-md-12
+        = render 'form'

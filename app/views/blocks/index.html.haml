@@ -1,38 +1,9 @@
-%h1 Blocks for #{@event.name}, #{@day.name}
+.row
+  .col-md-12
+    .default
+      %h1 Blocks for #{@event.name}, #{@day.name}
 
-= link_to 'New Block', new_event_day_block_path(@event, @day), class: 'btn btn-primary'
-
-
-%table.table
-  %thead
-    %tr
-      %th
-      %th
-      %th Name
-      %th Block type
-      %th Duration
-      %th
-      %th
-      %th
-
-  %tbody
-    - @blocks.each do |block|
-      %tr
-        %td= block.order
-        %td
-          - if first_block(block)
-            ↑
-          - else
-            = link_to '↑', event_day_block_move_earlier_path(@event, @day, block), method: :put
-        %td
-          - if last_block(block)
-            ↓
-          - else
-            = link_to '↓', event_day_block_move_later_path(@event, @day, block), method: :put
-        %td= link_to block.name, event_day_block_path(@event, @day, block)
-        %td= block_type_to_string(block.block_type) || block.block_type
-        %td #{block.duration} minutes
-        %td= link_to 'Edit', edit_event_day_block_path(@event, @day, block)
-        %td= link_to 'Remove', event_day_block_path(@event, @day, block), method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
+      = link_to 'New Block', new_event_day_block_path(@event, @day),
+                class: 'btn btn-primary'
+      .blocks
+        = render @blocks

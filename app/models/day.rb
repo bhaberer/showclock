@@ -3,7 +3,8 @@ class Day < ApplicationRecord
   has_many :blocks
 
   validates :event, presence: true
-  validates :name,  presence: true
+  validates :name,  presence: true,
+                    inclusion: { in: Date::DAYNAMES }
   validates :start_time,  presence: true
 
   def day_duration

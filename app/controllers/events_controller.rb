@@ -2,10 +2,14 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.all
+    @upcoming_events = Event.upcoming
+    @current_events = Event.current
+    @past_events = Event.past
   end
 
-  def show; end
+  def show
+    @days = @event.days
+  end
 
   def new
     @event = Event.new
@@ -54,6 +58,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name)
+    params.require(:event).permit(:name, :start_time, :end_time)
   end
 end

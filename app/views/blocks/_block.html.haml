@@ -1,0 +1,22 @@
+.block
+  .earlier
+    - if first_block(block)
+      ↑
+    - else
+      = link_to '↑', event_day_block_move_earlier_path(@event, @day, block), method: :put
+  .later
+    - if last_block(block)
+      ↓
+    - else
+      = link_to '↓', event_day_block_move_later_path(@event, @day, block), method: :put
+  .name
+    = link_to block.name, event_day_block_path(@event, @day, block)
+  .block_type
+    = block_type_to_string(block.block_type) || block.block_type
+  .duration
+    #{block.duration} minutes
+  .controls
+    = link_to 'Edit', edit_event_day_block_path(@event, @day, block)
+    = link_to 'Duplicate', '#'
+    = link_to 'Delete', event_day_block_path(@event, @day, block),
+              method: :delete, data: { confirm: 'Are you sure?' }

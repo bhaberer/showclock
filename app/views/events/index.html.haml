@@ -1,17 +1,26 @@
-%h1 Listing events
+.default.controls
+  .row
+    .col-md-12
+      = link_to 'New Event', new_event_path, class: 'btn btn-sm btn-primary'
+%br.clear
 
-= link_to 'New Event', new_event_path, class: 'btn btn-sm btn-primary'
+- if @current_events.present?
+  .default.current
+    %h1 Currently Running Events
+    .events
+      = render partial: 'event', collection: @current_events
+  %br.clear
 
-%table.table
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
+- if @upcoming_events.present?
+  .default.upcoming
+    %h1 Upcoming Events
+    .events
+      = render partial: 'event', collection: @upcoming_events
+  %br.clear
 
-  %tbody
-    - @events.each do |event|
-      %tr
-        %td= link_to event.name, event
-        %td= link_to 'Edit', edit_event_path(event)
-        %td= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
+- if @past_events.present?
+  .default.past
+    %h1 Past Events
+    .events
+      = render partial: 'event', collection: @past_events
+  %br.clear

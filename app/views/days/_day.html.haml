@@ -1,0 +1,8 @@
+.day
+  .name= link_to day.name, event_day_path(@event, day)
+  .stats
+    Blocks: #{day.blocks.count}
+  .controls
+    = link_to 'Edit', edit_event_day_path(@event, day)
+    = link_to 'Destroy', event_day_path(@event, day), method: :delete,
+              data: { confirm: 'Are you sure?' }

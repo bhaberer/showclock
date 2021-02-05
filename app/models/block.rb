@@ -13,7 +13,7 @@ class Block < ApplicationRecord
   validates :block_type, inclusion: {in: Block::BLOCK_TYPES.keys.map(&:to_s)},
                          presence: true
   validates :order, presence: true,
-                    uniqueness: true,
+                    uniqueness: { scope: :day },
                     inclusion: { in: 1..2000 }
   validates :duration, numericality: true,
                        presence: true,

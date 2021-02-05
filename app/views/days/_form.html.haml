@@ -8,9 +8,8 @@
 
   .form-group
     = f.label :name
-    = f.text_field :name, class: 'form-control'
+    = f.select :name, Date::DAYNAMES, {}, { class: 'form-control' }
   .form-group
     = f.label :start_time
     = f.datetime_field :start_time
-  .actions
-    = f.submit 'Save'
+  = f.submit 'Save Day', class: 'btn btn-primary'

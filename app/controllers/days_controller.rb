@@ -3,7 +3,7 @@ class DaysController < ApplicationController
   before_action :set_day, only: [:timer, :show, :edit, :update, :destroy]
 
   def index
-    @days = Day.all
+    @days = Day.where(event: @event)
   end
 
   def timer
